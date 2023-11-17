@@ -58,3 +58,42 @@ public JogoDaVelhaGUI() {
             nomeJogadorO = JOptionPane.showInputDialog("Digite o nome do jogador O:");
         }
     }
+    
+@Override
+    public void actionPerformed(ActionEvent e) {
+        JButton botaoClicado = (JButton) e.getSource();
+
+        if (botaoClicado.getText().equals("")) {
+            botaoClicado.setText(String.valueOf(jogadorAtual));
+            botaoClicado.setEnabled(false);
+
+            // Atualiza o tabuleiro com o símbolo do jogador
+            int linha = -1, coluna = -1;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (botoes[i][j] == botaoClicado) {
+                        linha = i;
+                        coluna = j;
+                        break;
+                    }
+                }
+            }
+
+            if (linha != -1 && coluna != -1) {
+                tabuleiro[linha][coluna] = jogadorAtual;
+            }
+
+            if (verificarVitoria()) {
+                JOptionPane.showMessageDialog(this, "Jogador " + jogadorAtual + " venceu!");
+                atualizarPlacar();
+                reiniciarJogo();
+            } else if (tabuleiroCompleto()) {
+                JOptionPane.showMessageDialog(this, "O jogo terminou em empate!");
+                reiniciarJogo();
+            } else {
+                jogadorAtual = (jogadorAtual == 'X') ? 'O' : 'X';
+                setTitle("Jogo da Velha - " + nomeJogadorX + " vs " + nomeJogadorO);
+            }
+        }
+    }
+
