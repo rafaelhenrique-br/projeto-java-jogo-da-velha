@@ -137,5 +137,16 @@ public JogoDaVelhaGUI() {
         placarLabel.setText("Placar: " + nomeJogadorX + " " + placarJogadorX + " - " + placarJogadorO + " " + nomeJogadorO);
     }
 
-
-
+private void reiniciarJogo() {
+    // limpar o tabuleiro e reiniciar o jogo
+    for (int i = 0; i<3; i++) {
+         for (int j = 0; j<3; j++){
+             botoes[i][j].setText("");
+             botoes[i][j].setEnabled(true);
+             tabuleiro[i][j] = ' ';
+         }
+    }
+    jogadorAtual = 'x';
+    setTitle("Jogo da velha -" + nomeJogadorX + " vs " + nomeJogadorO);
+}
+}
