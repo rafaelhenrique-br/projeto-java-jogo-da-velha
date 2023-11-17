@@ -116,3 +116,26 @@ public JogoDaVelhaGUI() {
         return false; // não encontrada
     }
 
+     private boolean tabuleiroCompleto() {
+        // tabuleiro está completamente preenchido
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (tabuleiro[i][j] == ' ') {
+                    return false; // Ainda há espaço em branco
+                }
+            }
+        }
+        return true; // tabuleiro está completo
+    }
+
+    private void atualizarPlacar() {
+        if (jogadorAtual == 'X') {
+            placarJogadorX++;
+        } else {
+            placarJogadorO++;
+        }
+        placarLabel.setText("Placar: " + nomeJogadorX + " " + placarJogadorX + " - " + placarJogadorO + " " + nomeJogadorO);
+    }
+
+
+
